@@ -1,7 +1,49 @@
-= resume
+== The Ruby Based Ruby Resume' Generator
+This is a fun little project for defining your resume in Ruby.  You say your a Rubyist, but is your resume written in a DSL?  I didn't think so!  Using the Ruby Resume' Generator, you too can be a total geek!
 
-Description goes here.
+== Example
+# ruby_coder.rb
+class RubyCoder 
+  include Resume
+  contact :email => %w(ruby coder net), :phone => %w(800 444 3333)
+  attended "XYZU", :in => "Gemology", :with => "PHD", :graduated => "1999"
+  worked :at => "Gem Cutting, Inc.", :description => "cut all kinds of rubies", :position => "cuter", :tenure => 2008
+  built %w(ruby-cuts.tv)
+  using %w(ruby haml datamapper)
+  practicing %w(agile bdd juggling)
+  story %w(I'm a ruby coder of some skill and whatnot.  You should hire be because I'm cool.)
+end
 
-== Copyright
+Then, with this gem installed you can pop out a slick little resume'
 
-Copyright (c) 2009 cajun. See LICENSE for details.
+> resume ruby_coder.rb
+
+                                   Ruby Coder                                   
+                         ruby@coder.net   800.444.3333                          
+--------------------------------------------------------------------------------
+                                                  Attended XYZU Gemology for PHD
+--------------------------------------------------------------------------------
+                                     Worked at Gem Cutting, Inc. as a cuter 2008
+cut all kinds of rubies                                                         
+--------------------------------------------------------------------------------
+                                                                           Sites
+ruby-cuts.tv                                                                    
+--------------------------------------------------------------------------------
+                                                                    Technologies
+ruby - haml - datamapper                                                        
+--------------------------------------------------------------------------------
+                                                                       Practices
+agile - bdd - juggling                                                          
+--------------------------------------------------------------------------------
+I'm a ruby coder of some skill and whatnot. You should hire be because I'm cool.
+
+You can also write a PDF file by supplying the -pdf parameter
+
+> resume examples/ruby_coder.rb -pdf
+Printing PDF to RubyCoder.pdf
+
+== Notes
+Feel free to leave any and all of the various sections out.  You can call most methods multiple times and the data
+will simply get added to the list of items.
+
+If you want a different format, feel free to hack away.  If you can't you probably shouldn't be using this anyway.

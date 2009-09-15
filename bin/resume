@@ -1,0 +1,51 @@
+#!/usr/bin/env ruby
+# -*- mode: ruby -*-
+
+require 'optparse'
+require 'open-uri'
+require File.join(File.dirname(__FILE__), '../lib/resume')
+require File.join(File.dirname(__FILE__), '../lib/pdf_printer')
+
+options = {}
+opts = OptionParser.new do |opts|
+  opts.banner = "Usage: resume [options] <resume location>"
+
+  opts.on("-pdf", "Create a PDF") do |pdf|
+    options[:pdf] = pdf
+  end
+
+  opts.on("-ruby", "Shows the Ruby code to create this resume") do |ruby|
+    options[:ruby] = ruby
+  end
+  
+  opts.on_tail("-h", "--help", "Show this message") do
+    puts opts
+    exit
+  end
+  opts.parse!
+  opts
+end
+
+if(ARGV.last =~ /^-/ or ARGV.empty?)
+  puts opts
+  puts "Resume to print must be supplied."
+  exit
+end
+
+resume_class_string = open(ARGV.last).read
+eval(resume_class_string)
+resume_class_name = resume_class_string.match(/class\s(.*)/)[1]
+resume_class = eval("#{resume_class_name}.new.class")
+
+if(options[:ruby])
+  puts resume_class_string
+end
+
+if(options[:pdf])
+  printer = PDFPrinter.new(resume_class)
+  puts "Printing PDF to #{printer.filename}"
+  printer.print
+else
+  resume_class.pretty_print
+end
+
