@@ -60,7 +60,7 @@ class PDFPrinter
         font "Courier"
         fill_color "999999"
         
-        text "gem install resume; resume #{$*}", :align => :center, :size => 8
+        text "gem install cajun-resume; resume #{$*}", :align => :center, :size => 8
       end
     end    
   end

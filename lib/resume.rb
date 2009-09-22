@@ -41,7 +41,7 @@ module Resume
 
     # worked :at => "Acme, Inc.", :description => "bored out of skull", :position => "Monkey", :tenure => 2008    
     def worked(opts = {})
-      self.jobs << {:company => opts[:at], :description => opts[:description], :position => opts[:position], :tenure => opts[:tenure]}
+      self.jobs << {:company => opts[:at], :project => opts[:project], :description => opts[:description], :position => opts[:position], :tenure => opts[:tenure]}
     end
     
     {"built" => "applications", "using" => "technologies", "practicing" => "practices"}.each do |name, accessor|
@@ -110,6 +110,7 @@ module Resume
         row << "Worked at #{j[:company]}" if j[:company]
         row << " as a #{j[:position]}" if j[:position]
         row << " (#{j[:tenure]})" if j[:tenure]
+        row << "\n On #{j[:project]}" if j[:project]
         result = print(row, out, width, :right)
         result += "\n     " + print(j[:description], out, width) if j[:description]
       }.join("\n\n")
