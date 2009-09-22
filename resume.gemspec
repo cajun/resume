@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{resume}
-  s.version = "0.0.0"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["cajun"]
-  s.date = %q{2009-09-14}
+  s.date = %q{2009-09-22}
   s.default_executable = %q{resume}
   s.email = %q{zac@kleinpeter.org}
   s.executables = ["resume"]
@@ -21,7 +21,12 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
-     "lib/resume.rb"
+     "bin/resume",
+     "examples/ruby_coder.rb",
+     "lib/pdf_printer.rb",
+     "lib/resume.rb",
+     "resume.gemspec",
+     "spec/resume_spec.rb"
   ]
   s.homepage = %q{http://github.com/cajun/resume}
   s.rdoc_options = ["--charset=UTF-8"]
@@ -29,7 +34,8 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.5}
   s.summary = %q{cool resume}
   s.test_files = [
-    "spec/resume_spec.rb"
+    "spec/resume_spec.rb",
+     "examples/ruby_coder.rb"
   ]
 
   if s.respond_to? :specification_version then
